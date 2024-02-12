@@ -6,19 +6,8 @@ import org.jetbrains.annotations.Nullable;
 import tech.ydb.proto.ValueProtos;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 public interface IMapper<T> {
-
-    static ValueProtos.TypedValue primitiveValue(
-            ValueProtos.Type.PrimitiveTypeId typeId,
-            Function<ValueProtos.Value.Builder, ValueProtos.Value.Builder> valueSetter
-    ) {
-        return ValueProtos.TypedValue.newBuilder()
-                .setType(ValueProtos.Type.newBuilder().setTypeId(typeId))
-                .setValue(valueSetter.apply(ValueProtos.Value.newBuilder()))
-                .build();
-    }
 
     @Nullable
     default T mapNullable(ValueProtos.Value value) {

@@ -12,6 +12,7 @@ subprojects {
     }
 
     apply plugin: 'java'
+    apply plugin: 'maven-publish'
 
     dependencies {
         compileOnly "org.projectlombok:lombok:${lombokVersion}"
@@ -27,7 +28,28 @@ subprojects {
         testImplementation 'org.junit.jupiter:junit-jupiter'
     }
 
+    tasks.withType(JavaCompile).configureEach {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+        options.encoding = 'UTF-8'
+    }
+
     test {
         useJUnitPlatform()
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+
+                artifactId = project.name
+                groupId = project.parent.group
+                version = project.parent.version
+            }
+        }
+        repositories {
+            mavenLocal()
+        }
     }
 }
