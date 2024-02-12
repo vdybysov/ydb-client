@@ -40,16 +40,13 @@ subprojects {
 
     publishing {
         publications {
-            mavenJava(MavenPublication) {
+            all {
                 from components.java
 
                 artifactId = project.name
                 groupId = project.parent.group
                 version = project.parent.version
             }
-        }
-        repositories {
-            mavenLocal()
         }
     }
 }
