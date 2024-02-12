@@ -20,6 +20,7 @@ subprojects {
         implementation 'commons-beanutils:commons-beanutils:1.9.4'
         implementation 'com.google.guava:guava:33.0.0-jre'
         implementation 'org.jetbrains:annotations:24.1.0'
+        implementation 'io.grpc:grpc-okhttp:1.61.1'
         implementation 'tech.ydb:ydb-proto-api:1.6.1'
 
         testCompileOnly "org.projectlombok:lombok:${lombokVersion}"

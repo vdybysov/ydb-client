@@ -4,6 +4,7 @@ import com.google.common.base.Splitter;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Metadata;
+import io.grpc.okhttp.OkHttpChannelBuilder;
 import io.grpc.stub.MetadataUtils;
 import org.jetbrains.annotations.NotNull;
 import tech.ydb.proto.table.v1.TableServiceGrpc;
@@ -56,7 +57,7 @@ public class YdbClientBuilder {
     }
 
     private static Channel createChannel(@NotNull URI uri, @NotNull Metadata metadata) {
-        ManagedChannelBuilder<?> channelBuilder = ManagedChannelBuilder
+        ManagedChannelBuilder<?> channelBuilder = OkHttpChannelBuilder
                 .forAddress(uri.getHost(), uri.getPort())
                 .intercept(MetadataUtils.newAttachHeadersInterceptor(metadata));
         if ("grpcs".equals(uri.getScheme())) {
