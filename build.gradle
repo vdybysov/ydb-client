@@ -40,10 +40,10 @@ subprojects {
 
     publishing {
         publications {
-            all {
+            maven(MavenPublication) {
                 from components.java
 
-                artifactId = project.name
+                artifactId = "${project.parent.name}-${project.name}"
                 groupId = project.parent.group
                 version = project.parent.version
             }
