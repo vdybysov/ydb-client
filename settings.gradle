@@ -1,0 +1,3 @@
+include 'client', 'typed', 'example'
+rootProject.name = 'ydb-client'
+
